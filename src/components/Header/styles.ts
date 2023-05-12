@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 
 export const Container = styled.header`
+  padding: 10px 20px;
+
   height: 6rem;
   width: 100%;
 
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
 
   background: #e6e6e6;
 
@@ -15,8 +17,6 @@ export const Container = styled.header`
   font-size: 18px;
 
   .navbar {
-    padding: 10px 20px;
-
     display: flex;
     align-items: center;
 
@@ -29,9 +29,6 @@ export const Container = styled.header`
 
       padding: 8px 16px;
 
-      background-color: #bfd4f5;
-      background-color: #8b42ff;
-      background-color: #ae83f2;
       background-color: #f2c283;
       color: #fff;
 
@@ -48,6 +45,25 @@ export const Container = styled.header`
       &:hover {
         opacity: 0.7;
       }
+    }
+  }
+
+  button {
+    font-weight: 600;
+    font-size: 16px;
+
+    padding: 8px 16px;
+
+    color: #FFFFFF;
+    background: #ad9f9e;
+
+    border-radius: 10px;
+    border: 0;
+
+    transition: 0.4s;
+
+    &:hover {
+      opacity: 0.9;
     }
   }
 `;

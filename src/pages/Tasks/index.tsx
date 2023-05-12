@@ -1,25 +1,29 @@
 import { useContext, useEffect, useState } from 'react';
 
 import { Container, InputContainer, TasksContainer } from './styles';
-import { AuthContext } from '../../contexts/AuthContext';
 import { api } from '../../services/api';
 import { Task } from '../../types';
+import { LoadingContext } from '../../contexts/LoadingContext';
 
 export function Tasks() {
-  const { handleLogout } = useContext(AuthContext);
+  const { setLoading } = useContext(LoadingContext);
 
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [loading, setLoading] = useState(true);
   const [task, setTask] = useState('');
 
   useEffect(() => {
+    setLoading(true);
+
     api.get('/tasks')
       .then(response => {
         setTasks(response.data);
-        setLoading(false);
       })
-      .catch(error => {console.log('error', error);});
-  }, []);
+      .catch(error => {
+        console.log('error', error);
+      }).finally(() => {
+        setLoading(false);
+      });
+  }, [setLoading]);
 
   async function addTask() {
     setLoading(true);
@@ -30,10 +34,10 @@ export function Tasks() {
       setTasks((prevState) => {
         return [...prevState, response.data];
       });
-      setLoading(false);
       setTask('');
     }).catch(error => {
       console.log('error', error);
+    }).finally(() => {
       setLoading(false);
     });
   }
@@ -55,9 +59,9 @@ export function Tasks() {
 
         return newTasks;
       });
-      setLoading(false);
     }).catch(error => {
       console.log('error', error);
+    }).finally(() => {
       setLoading(false);
     });
   }
@@ -77,9 +81,9 @@ export function Tasks() {
 
         return newTasks;
       });
-      setLoading(false);
     }).catch(error => {
       console.log('error', error);
+    }).finally(() => {
       setLoading(false);
     });
   }
