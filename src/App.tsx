@@ -4,6 +4,7 @@ import GlobalStyle from './styles/globalStyle';
 import { AuthProvider } from './contexts/AuthContext';
 import { Login } from './pages/Login';
 import { Tasks } from './pages/Tasks';
+import { Layout } from './components/Layout';
 
 export function App() {
   return (
@@ -12,7 +13,9 @@ export function App() {
         <GlobalStyle />
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/tasks" element={<Tasks />} />
+          <Route element={<Layout />} >
+            <Route path="/tasks" element={<Tasks />} />
+          </Route>
         </Routes>
       </AuthProvider>
     </BrowserRouter>

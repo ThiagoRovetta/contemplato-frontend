@@ -15,7 +15,6 @@ const GlobalStyle = createGlobalStyle`
     scroll-behavior: smooth;
 
     color: #333;
-    background: #e6e6e6;
   }
 
   a {

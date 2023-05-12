@@ -44,8 +44,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
     if (token && user) {
       setAuthenticated(true);
       setCurrentUser(JSON.parse(user));
-
-      api.defaults.headers.authorization = `Bearer ${JSON.parse(token)}`;
     }
   }, []);
 
@@ -62,7 +60,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
         localStorage.setItem('currentUser', JSON.stringify(response.data.user));
 
         setAuthenticated(true);
-        api.defaults.headers.authorization = `Bearer ${response.data.token}`;
 
         navigate(from, { replace: true });
       }
